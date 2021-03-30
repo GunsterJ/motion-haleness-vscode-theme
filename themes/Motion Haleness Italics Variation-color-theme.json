@@ -72,8 +72,10 @@
 			"tab.border": "#2b2d34",
 			"tab.inactiveBackground": "#2b2d34",
 			"tab.hoverBackground": "#4A5667",
-			"tab.unfocusedActiveModifiedBorder": "#F4D35E",
-			"tab.unfocusedInactiveModifiedBorder": "#F4D35E",
+			"tab.activeModifiedBorder": "#F4D35E",
+			"tab.inactiveModifiedBorder": "#CCF5AC",
+			"tab.unfocusedActiveModifiedBorder": "#CCF5AC",
+			"tab.unfocusedInactiveModifiedBorder": "#CCF5AC",
 			"editorPane.background": "#F4D35E",
 
 			"titleBar.activeBackground": "#212329",
