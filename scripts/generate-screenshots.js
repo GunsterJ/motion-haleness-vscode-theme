@@ -140,11 +140,68 @@ function splitByChar(text, color) {
   return out;
 }
 
-const W = 1440;
-const H = 1440;
+const W = 1100;
+const H = 1100;
 const FONT = "Menlo, Monaco, monospace";
 
-function buildSvg(langLabel, fileName, code) {
+const ORDER = ["ts", "tsx", "py", "go", "rs", "js", "html", "css", "sql", "json", "md"];
+const STRIP_H = ORDER.length * H;
+const BG_PALETTE = ["#55D6BE", "#9F5EF4", "#F4D35E", "#FF715B", "#76E5FC"];
+
+function mulberry32(a) {
+  return function () {
+    a |= 0;
+    a = (a + 0x6d2b79f5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+const rng = mulberry32(0xc0ffee);
+const blobs = [];
+for (let i = 0; i < 88; i++) {
+  blobs.push({
+    x: rng() * W,
+    y: rng() * STRIP_H,
+    r: 170 + rng() * 260,
+    color: BG_PALETTE[Math.floor(rng() * BG_PALETTE.length)],
+    opacity: 0.12 + rng() * 0.11,
+  });
+}
+const dots = [];
+for (let i = 0; i < 2600; i++) {
+  dots.push({
+    x: rng() * W,
+    y: rng() * STRIP_H,
+    r: 1 + rng() * 1.6,
+    opacity: 0.04 + rng() * 0.05,
+  });
+}
+
+function backgroundFragment(idx) {
+  const y0 = idx * H;
+  const y1 = (idx + 1) * H;
+  const parts = [];
+  parts.push(`<linearGradient id="strip" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#161a24"/>
+    <stop offset="0.3" stop-color="#1a2633"/>
+    <stop offset="0.62" stop-color="#292039"/>
+    <stop offset="1" stop-color="#132a2e"/>
+  </linearGradient>`);
+  parts.push(`<rect x="0" y="0" width="${W}" height="${STRIP_H}" fill="url(#strip)"/>`);
+  for (const b of blobs) {
+    if (b.y < y0 - 480 || b.y > y1 + 480) continue;
+    parts.push(`<circle cx="${b.x.toFixed(1)}" cy="${b.y.toFixed(1)}" r="${b.r.toFixed(1)}" fill="${b.color}" opacity="${b.opacity.toFixed(3)}" filter="url(#blurB)"/>`);
+  }
+  for (const d of dots) {
+    if (d.y < y0 - 2 || d.y > y1 + 2) continue;
+    parts.push(`<circle cx="${d.x.toFixed(1)}" cy="${d.y.toFixed(1)}" r="${d.r.toFixed(1)}" fill="#ffffff" opacity="${d.opacity.toFixed(3)}"/>`);
+  }
+  return `<g transform="translate(0, ${-y0})">${parts.join("\n")}</g>`;
+}
+
+function buildSvg(langLabel, fileName, code, idx) {
   const highlighted = hljs.highlight(code, { language: LANGS[langLabel] }).value;
   const lines = [];
   let line = [];
@@ -180,22 +237,9 @@ function buildSvg(langLabel, fileName, code) {
 
   const parts = [];
   parts.push(`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">`);
-  parts.push(`<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-  <stop offset="0" stop-color="#14171d"/>
-  <stop offset="0.5" stop-color="#13262f"/>
-  <stop offset="1" stop-color="#241b35"/>
-</linearGradient>
-<filter id="blurT" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="150"/></filter>
-<filter id="blurP" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="190"/></filter>
-<filter id="blurY" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="120"/></filter>
-<filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.07 0"/></filter>
+  parts.push(`<defs><filter id="blurB" x="-70%" y="-70%" width="240%" height="240%"><feGaussianBlur stdDeviation="90"/></filter>
 <clipPath id="win"><rect x="${winX}" y="${winY}" width="${winW}" height="${winH}" rx="${RADIUS}"/></clipPath></defs>`);
-  parts.push(`<rect width="${W}" height="${H}" fill="url(#bg)"/>`);
-  parts.push(`<circle cx="${Math.round(W * 0.82)}" cy="${Math.round(H * 0.16)}" r="420" fill="#55D6BE" opacity="0.10" filter="url(#blurT)"/>`);
-  parts.push(`<circle cx="${Math.round(W * 0.14)}" cy="${Math.round(H * 0.86)}" r="460" fill="#9F5EF4" opacity="0.12" filter="url(#blurP)"/>`);
-  parts.push(`<circle cx="${Math.round(W * 0.5)}" cy="${Math.round(H * 0.97)}" r="300" fill="#0F8B8D" opacity="0.10" filter="url(#blurT)"/>`);
-  parts.push(`<circle cx="${Math.round(W * 0.92)}" cy="${Math.round(H * 0.9)}" r="220" fill="#F4D35E" opacity="0.07" filter="url(#blurY)"/>`);
-  parts.push(`<rect width="${W}" height="${H}" filter="url(#grain)"/>`);
+  parts.push(backgroundFragment(idx));
   parts.push(`<g clip-path="url(#win)">`);
 
   // title bar
@@ -271,12 +315,11 @@ function buildSvg(langLabel, fileName, code) {
 }
 
 fs.mkdirSync(OUT_DIR, { recursive: true });
-for (const file of fs.readdirSync(EXAMPLES_DIR)) {
-  const ext = path.extname(file).slice(1);
-  if (!LANGS[ext]) continue;
+for (const ext of ORDER) {
+  const file = `demo.${ext}`;
   const code = fs.readFileSync(path.join(EXAMPLES_DIR, file), "utf8");
   const name = path.basename(file, path.extname(file));
-  const svg = buildSvg(ext, file, code);
+  const svg = buildSvg(ext, file, code, ORDER.indexOf(ext));
   const out = path.join(OUT_DIR, `${name}-${ext}.svg`);
   fs.writeFileSync(out, svg);
   console.log(`wrote ${out}`);
