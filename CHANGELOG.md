@@ -51,15 +51,19 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [0.3.0] - 2020-12-04
 
 ### Added
-- New **Motion Haleness Italic** variant
+- New **Motion Haleness Italic** variant: a full second theme with italic styling on functions, methods and attributes
+- Refined token colors in the base theme
+
+### Fixed
 - Contrast fix for tab highlighting
 
 ## [0.2.0] - 2020-12-03
 
 ### Added
 - Extension icon
-- Updated description and packaging (0.2.x line)
+- Updated extension description and marketplace metadata
+- Packaging fixes across the 0.2.x line (correct directory structure, duplicate icon cleanup)
 
 ## [0.1.0] - 2020-12-03
 
-- Initial release of Motion Haleness
+- Initial release of Motion Haleness: a full dark color theme for Visual Studio Code with 80 workbench colors and 40+ syntax token groups — comments, keywords, operators, functions, strings, classes, CSS, HTML, decorators, regular expressions, git markup and a rainbow JSON key scheme
