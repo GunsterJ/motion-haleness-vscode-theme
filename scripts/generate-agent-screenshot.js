@@ -1,11 +1,10 @@
 // Renders a screenshot of a real Kilo Code conversation, styled with the
-// Motion Haleness chat colors. Requires the Kilo CLI (@kilocode/cli) and
-// highlight.js (see scripts/make-screenshots.sh for the one-time install).
+// Motion Haleness chat colors. The conversation data comes from a real Kilo
+// session snapshot (assets/examples/kilo-turn.json).
 // Usage: NODE_PATH=/tmp/mh-tools/node_modules node scripts/generate-agent-screenshot.js [outPng]
 const { execFileSync } = require("child_process");
 const fs = require("fs");
 const path = require("path");
-const hljs = require("highlight.js");
 const lib = require("./generate-screenshots.js");
 
 const W = lib.W;
@@ -13,37 +12,7 @@ const H = lib.H;
 const FONT = lib.FONT;
 const ORDER_INDEX = 11;
 
-const PROMPT =
-  "Explain binary search in 3 short sentences, then give a short Python implementation with a couple of comments.";
-
-function stripAnsi(s) {
-  return s.replace(/\x1b\[[0-9;]*m/g, "");
-}
-
-function parseResponse(raw) {
-  const clean = stripAnsi(raw);
-  const lines = clean.split("\n").filter((l) => l.trim().length > 0 && !/^> /.test(l));
-  const blocks = [];
-  let i = 0;
-  while (i < lines.length) {
-    const m = lines[i].match(/^```(\w*)/);
-    if (m) {
-      const lang = m[1] || "text";
-      const code = [];
-      i += 1;
-      while (i < lines.length && !/^```/.test(lines[i])) {
-        code.push(lines[i]);
-        i += 1;
-      }
-      i += 1;
-      blocks.push({ type: "code", lang, text: code.join("\n") });
-    } else {
-      blocks.push({ type: "text", text: lines[i] });
-      i += 1;
-    }
-  }
-  return blocks;
-}
+const snap = JSON.parse(fs.readFileSync("assets/examples/kilo-turn.json", "utf8"));
 
 function wrap(text, maxChars) {
   const out = [];
@@ -80,15 +49,13 @@ function renderInline(text, color, fontSize, x0) {
       col = "#76E5FC";
       t = seg.slice(1, -1);
     }
-    parts.push(
-      `<tspan x="${x.toFixed(1)}" fill="${col}"${bold ? ' font-weight="bold"' : ""}>${lib.escapeXml(t)}</tspan>`
-    );
+    parts.push(`<tspan x="${x.toFixed(1)}" fill="${col}"${bold ? ' font-weight="bold"' : ""}>${lib.escapeXml(t)}</tspan>`);
     x += t.length * fontSize * 0.6;
   }
   return parts.join("");
 }
 
-function buildConversationSvg(model, blocks) {
+function buildConversationSvg() {
   const PAD = 56;
   const RADIUS = 14;
   const winX = PAD;
@@ -96,16 +63,15 @@ function buildConversationSvg(model, blocks) {
   const winW = W - 2 * PAD;
   const winH = H - 2 * PAD;
   const titleBarH = 54;
-  const headerH = 52;
-  const composerH = 64;
+  const headerH = 66;
+  const composerH = 76;
   const chatY = winY + titleBarH + headerH;
-  const chatW = winW - 48;
   const chatX = winX + 24;
+  const chatW = winW - 48;
   const fontSize = 15;
   const lineH = 24;
   const CHAR_W = fontSize * 0.6;
   const maxChars = Math.floor(chatW / CHAR_W) - 2;
-  const charWidth = (t) => [...t].reduce((n, ch) => n + (ch === "\t" ? 4 : 1), 0);
 
   const parts = [];
   parts.push(`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">`);
@@ -114,6 +80,7 @@ function buildConversationSvg(model, blocks) {
   parts.push(lib.backgroundFragment(ORDER_INDEX));
   parts.push(`<g clip-path="url(#win)">`);
 
+  // title bar
   parts.push(`<rect x="${winX}" y="${winY}" width="${winW}" height="${titleBarH}" fill="#262A33"/>`);
   for (const [i, col] of ["#FF715B", "#F4D35E", "#55D6BE"].entries()) {
     parts.push(`<circle cx="${winX + 26 + i * 18}" cy="${winY + 27}" r="7" fill="${col}"/>`);
@@ -122,18 +89,26 @@ function buildConversationSvg(model, blocks) {
     `<text x="${W / 2}" y="${winY + 36}" fill="#a0aec0" font-family="${FONT}" font-size="16" text-anchor="middle">Kilo Code &#8212; Motion Haleness</text>`
   );
 
+  // header row: title, model, token info, New Session
   parts.push(`<rect x="${winX}" y="${winY + titleBarH}" width="${winW}" height="${headerH}" fill="#2b2d34"/>`);
-  parts.push(`<circle cx="${winX + 28}" cy="${winY + titleBarH + headerH / 2}" r="11" fill="#0F8B8D"/>`);
-  parts.push(`<text x="${winX + 48}" y="${winY + titleBarH + 21}" fill="#EEFFFF" font-family="${FONT}" font-size="15">Kilo Code</text>`);
-  parts.push(`<text x="${winX + 48}" y="${winY + titleBarH + 38}" fill="#a0aec0" font-family="${FONT}" font-size="12">${lib.escapeXml(model || "AI coding agent")}</text>`);
+  parts.push(`<circle cx="${winX + 28}" cy="${winY + titleBarH + 28}" r="11" fill="#0F8B8D"/>`);
+  parts.push(`<text x="${winX + 48}" y="${winY + titleBarH + 24}" fill="#EEFFFF" font-family="${FONT}" font-size="15">Kilo Code</text>`);
+  parts.push(`<text x="${winX + 48}" y="${winY + titleBarH + 42}" fill="#a0aec0" font-family="${FONT}" font-size="12">${lib.escapeXml(snap.model)}</text>`);
 
+  const totalK = snap.tokens.total != null ? (snap.tokens.total / 1000).toFixed(1) : "0";
+  parts.push(`<text x="${winX + winW - 196}" y="${winY + titleBarH + 26}" fill="#a0aec0" font-family="${FONT}" font-size="12" text-anchor="end">${totalK}k tokens</text>`);
+  parts.push(`<text x="${winX + winW - 196}" y="${winY + titleBarH + 42}" fill="#576773" font-family="${FONT}" font-size="11" text-anchor="end">reasoning ${Math.round(((snap.tokens.reasoning || 0) / (snap.tokens.total || 1)) * 100)}%</text>`);
+  parts.push(`<rect x="${winX + winW - 172}" y="${winY + titleBarH + 16}" width="96" height="32" rx="8" fill="#0F8B8D"/>`);
+  parts.push(`<text x="${winX + winW - 124}" y="${winY + titleBarH + 36}" fill="#EEFFFF" font-family="${FONT}" font-size="13" text-anchor="middle">New Session</text>`);
+
+  // chat background
   const chatH = winH - titleBarH - headerH - composerH;
   parts.push(`<rect x="${winX}" y="${chatY}" width="${winW}" height="${chatH}" fill="#262A33"/>`);
-
-  let y = chatY + 26;
+  let y = chatY + 24;
   const chatBottom = chatY + chatH;
 
-  const userLines = wrap(PROMPT, maxChars);
+  // user message bubble
+  const userLines = wrap(snap.user, maxChars);
   const bubbleW = Math.max(...userLines.map((l) => l.length * CHAR_W)) + 32;
   const bubbleH = userLines.length * lineH + 18;
   const bubbleX = winX + winW - 24 - bubbleW;
@@ -142,95 +117,73 @@ function buildConversationSvg(model, blocks) {
     parts.push(`<text x="${bubbleX + 16}" y="${y + 26 + i * lineH}" fill="#EEFFFF" font-family="${FONT}" font-size="${fontSize}">${lib.escapeXml(line)}</text>`);
   });
   parts.push(`<text x="${bubbleX + bubbleW - 16}" y="${y + bubbleH + 12}" fill="#a0aec0" font-family="${FONT}" font-size="11" text-anchor="end">You</text>`);
-  y += bubbleH + 30;
+  y += bubbleH + 28;
 
-  parts.push(`<text x="${chatX}" y="${y}" fill="#55D6BE" font-family="${FONT}" font-size="13">Kilo Code</text>`);
-  y += 24;
+  // assistant header
+  parts.push(`<circle cx="${chatX + 9}" cy="${y - 6}" r="8" fill="#55D6BE"/>`);
+  parts.push(`<text x="${chatX + 24}" y="${y}" fill="#55D6BE" font-family="${FONT}" font-size="13">Kilo Code</text>`);
+  y += 20;
 
-  for (const block of blocks) {
-    if (block.type === "code") {
-      const codeLines = block.text.split("\n");
-      const cbW = Math.max(...codeLines.map((l) => l.length)) * CHAR_W + 40;
-      const cbH = codeLines.length * lineH + 28;
-      parts.push(`<rect x="${chatX}" y="${y}" width="${cbW}" height="${cbH}" rx="8" fill="#212329" stroke="#4A5667"/>`);
-      const lang = hljs.getLanguage(block.lang) ? block.lang : "text";
-      const highlighted = hljs.highlight(block.text, { language: lang }).value;
-      const lines = [];
-      let line = [];
-      for (const run of lib.tokensFromHtml(highlighted)) {
-        if (run.text.includes("\n")) {
-          const ps = run.text.split("\n");
-          ps.forEach((p, i) => {
-            if (p.length) line.push({ ...run, text: p });
-            if (i < ps.length - 1) {
-              lines.push(line);
-              line = [];
-            }
-          });
-        } else {
-          line.push(run);
-        }
-      }
-      lines.push(line);
-      lines.forEach((runs, li) => {
-        const yy = y + 24 + li * lineH;
-        let pos = 0;
-        for (const r of runs) {
-          for (const seg of lib.splitByChar(r.text, lib.colorFor(r.classes))) {
-            const trimmed = seg.text.trim();
-            if (!trimmed) {
-              pos += charWidth(seg.text);
-              continue;
-            }
-            const leading = (seg.text.match(/^\s*/) || [""])[0];
-            const trailing = (seg.text.match(/\s*$/) || [""])[0];
-            pos += charWidth(leading);
-            parts.push(
-              `<text x="${(chatX + 20 + pos * CHAR_W).toFixed(1)}" y="${yy}" font-family="${FONT}" font-size="${fontSize}"><tspan fill="${seg.color}">${lib.escapeXml(trimmed)}</tspan></text>`
-            );
-            pos += charWidth(trimmed) + charWidth(trailing);
-          }
-        }
-      });
-      y += cbH + 18;
-    } else {
-      for (const line of wrap(block.text, maxChars)) {
-        if (y > chatBottom - lineH) break;
-        parts.push(
-          `<text x="${chatX}" y="${y}" font-family="${FONT}" font-size="${fontSize}">${renderInline(line, "#EEFFFF", fontSize, chatX)}</text>`
-        );
-        y += lineH;
-      }
-      y += 6;
-    }
+  // thinking block (real reasoning)
+  const thinkLines = wrap(snap.thinking, maxChars - 6);
+  const thinkH = thinkLines.length * lineH + 40;
+  parts.push(`<rect x="${chatX}" y="${y}" width="${chatW}" height="${thinkH}" rx="8" fill="#2b2d34" stroke="#4A5667"/>`);
+  parts.push(`<circle cx="${chatX + 18}" cy="${y + 19}" r="5" fill="#F4D35E"/>`);
+  parts.push(`<text x="${chatX + 30}" y="${y + 24}" fill="#F4D35E" font-family="${FONT}" font-size="12">Thinking</text>`);
+  thinkLines.forEach((line, i) => {
+    parts.push(`<text x="${chatX + 16}" y="${y + 46 + i * lineH}" font-family="${FONT}" font-size="13">${renderInline(line, "#a0aec0", 13, chatX + 16)}</text>`);
+  });
+  y += thinkH + 18;
+
+  // response text
+  for (const line of wrap(snap.response, maxChars)) {
+    if (y > chatBottom - lineH) break;
+    parts.push(`<text x="${chatX}" y="${y}" font-family="${FONT}" font-size="${fontSize}">${renderInline(line, "#EEFFFF", fontSize, chatX)}</text>`);
+    y += lineH;
   }
+  y += 10;
+
+  // files changed chip
+  const chipTxt = `${snap.filesChanged} files changed`;
+  const chipW = chipTxt.length * 12 * 0.6 + 40;
+  parts.push(`<rect x="${chatX}" y="${y}" width="${chipW}" height="28" rx="14" fill="#12352E" stroke="#55D6BE"/>`);
+  parts.push(`<circle cx="${chatX + 19}" cy="${y + 14}" r="5" fill="#55D6BE"/>`);
+  parts.push(`<text x="${chatX + 32}" y="${y + 19}" fill="#55D6BE" font-family="${FONT}" font-size="12">${chipTxt}</text>`);
 
   parts.push(`</g>`);
 
+  // composer
   const compY = winY + winH - composerH;
   parts.push(`<rect x="${winX}" y="${compY}" width="${winW}" height="${composerH}" fill="#2b2d34"/>`);
-  parts.push(`<rect x="${winX + 24}" y="${compY + 14}" width="${winW - 48 - 90}" height="36" rx="8" fill="#212329" stroke="#4A5667"/>`);
-  parts.push(`<text x="${winX + 38}" y="${compY + 36}" fill="#a0aec0" font-family="${FONT}" font-size="14">Ask Kilo Code anything&#8230;</text>`);
-  parts.push(`<rect x="${winX + winW - 24 - 78}" y="${compY + 14}" width="78" height="36" rx="8" fill="#0F8B8D"/>`);
-  parts.push(`<text x="${winX + winW - 24 - 39}" y="${compY + 36}" fill="#EEFFFF" font-family="${FONT}" font-size="14" text-anchor="middle">Send</text>`);
+  const inX = winX + 24;
+  const inW = winW - 48 - 160;
+  parts.push(`<rect x="${inX}" y="${compY + 16}" width="${inW}" height="44" rx="10" fill="#212329" stroke="#4A5667"/>`);
+  parts.push(`<path d="M${inX + 24} ${compY + 34} c-3 0 -5 2 -5 5 l0 8 c0 3 2 5 5 5 l14 0 c3 0 5 -2 5 -5 l0 -8 c0 -3 -2 -5 -5 -5" stroke="#a0aec0" stroke-width="1.5" fill="none"/>`);
+  parts.push(`<path d="M${inX + 27} ${compY + 40} l3 3 l3 -3" stroke="#a0aec0" stroke-width="1.5" fill="none"/>`);
+  parts.push(`<circle cx="${inX + 60}" cy="${compY + 38}" r="6" stroke="#a0aec0" stroke-width="1.5" fill="none"/>`);
+  parts.push(`<path d="M${inX + 57} ${compY + 38} l6 0 M${inX + 60} ${compY + 35} l0 6" stroke="#a0aec0" stroke-width="1.5" fill="none"/>`);
+  parts.push(`<text x="${inX + 78}" y="${compY + 42}" fill="#a0aec0" font-family="${FONT}" font-size="14">Ask Kilo Code&#8230;</text>`);
+
+  const modW = 96;
+  const modX = inX + inW + 10;
+  parts.push(`<rect x="${modX}" y="${compY + 16}" width="${modW}" height="44" rx="10" fill="#262A33" stroke="#4A5667"/>`);
+  parts.push(`<circle cx="${modX + 14}" cy="${compY + 38}" r="6" fill="#55D6BE"/>`);
+  parts.push(`<text x="${modX + 26}" y="${compY + 33}" fill="#EEFFFF" font-family="${FONT}" font-size="11">deepseek</text>`);
+  parts.push(`<text x="${modX + 26}" y="${compY + 48}" fill="#a0aec0" font-family="${FONT}" font-size="9">v4-flash-0731</text>`);
+  parts.push(`<path d="M${modX + modW - 14} ${compY + 36} l4 4 l-4 4" stroke="#a0aec0" stroke-width="1.5" fill="none"/>`);
+
+  const sndX = modX + modW + 8;
+  parts.push(`<rect x="${sndX}" y="${compY + 16}" width="54" height="44" rx="10" fill="#0F8B8D"/>`);
+  parts.push(`<text x="${sndX + 27}" y="${compY + 41}" fill="#EEFFFF" font-family="${FONT}" font-size="13" text-anchor="middle">Send</text>`);
+
   parts.push(`<rect x="${winX}" y="${winY}" width="${winW}" height="${winH}" rx="${RADIUS}" fill="none" stroke="#3a4150" stroke-width="2"/>`);
   parts.push("</svg>");
   return parts.join("\n");
 }
 
-let raw;
-try {
-  raw = fs.readFileSync("/tmp/kilo-out.txt", "utf8");
-} catch {
-  raw = execFileSync("kilo", ["run", PROMPT], { encoding: "utf8", cwd: "/tmp" });
-}
-const modelLine = stripAnsi(raw).split("\n").find((l) => /^> /.test(l)) || "";
-const model = modelLine.replace(/^>\s*/, "").trim();
-const blocks = parseResponse(raw);
-
 const OUT_PNG = process.argv[2] || "assets/screenshots/agent-kilo.png";
 const svgPath = "/tmp/agent-kilo.svg";
-fs.writeFileSync(svgPath, buildConversationSvg(model, blocks));
+fs.writeFileSync(svgPath, buildConversationSvg());
 execFileSync("qlmanage", ["-t", "-s", "1100", "-o", "/tmp", svgPath], { stdio: "ignore" });
 fs.mkdirSync(path.dirname(OUT_PNG), { recursive: true });
 fs.copyFileSync("/tmp/agent-kilo.svg.png", OUT_PNG);
