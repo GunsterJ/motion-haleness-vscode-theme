@@ -52,6 +52,11 @@
                     "default": "Inconsolata, Menlo, Monaco, 'Courier New', monospace",
                     "description": "Monospace font family used in the editor. Motion Haleness bundles Inconsolata; install it from the assets/fonts folder if it is not present on your system."
                 },
+                "editor.fontSize": {
+                    "type": "number",
+                    "default": 14,
+                    "description": "Font size in the editor. Inconsolata renders smaller than most monospace fonts, so Motion Haleness defaults to 14."
+                },
                 "editor.fontWeight": {
                     "type": "string",
                     "enum": ["normal", "bold", "100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -68,6 +73,11 @@
                     "enum": ["normal", "bold", "100", "200", "300", "400", "500", "600", "700", "800", "900"],
                     "default": "400",
                     "description": "Font weight used in the integrated terminal. Inconsolata is a variable font (200-900); 400 keeps terminal output readable without being too thin."
+                },
+                "terminal.integrated.fontSize": {
+                    "type": "number",
+                    "default": 14,
+                    "description": "Font size in the integrated terminal. Inconsolata renders smaller than most monospace fonts, so Motion Haleness defaults to 14."
                 },
                 "markdown.preview.fontFamily": {
                     "type": "string",
