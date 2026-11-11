@@ -42,14 +42,17 @@ Requires Claude Code 2.1.118 or later:
 
 ## Fonts
 
-Motion Haleness ships **Google Sans Code**, bundled in `assets/fonts/` as a variable font (SIL Open Font License 1.1). The extension defaults the editor and integrated terminal to Google Sans Code.
+Motion Haleness ships two fonts from Google, bundled in `assets/fonts/` as variable fonts (SIL Open Font License 1.1):
 
-To use it, install the fonts on your system:
+- **Google Sans Code** — monospace, used for the editor and integrated terminal (default weight 400; variable 300–800)
+- **Google Sans Flex** — proportional, used for the Markdown preview
+
+To use them, install the fonts on your system:
 
 - **macOS:** run `./scripts/install-fonts.sh`, or copy the `.ttf` files from `assets/fonts/` to `~/Library/Fonts`
 - **Other platforms:** install the `.ttf` files from `assets/fonts/` with your platform's font manager
 
-Restart VS Code after installing. The defaults set `"Google Sans Code"` for both `editor.fontFamily` and `terminal.integrated.fontFamily` — you can always override these in your own settings.
+Restart VS Code after installing. The defaults set `"Google Sans Code"` for `editor.fontFamily` and `terminal.integrated.fontFamily`, and `"Google Sans Flex"` for `markdown.preview.fontFamily` — you can always override these in your own settings.
 
 ## Screenshots
 
