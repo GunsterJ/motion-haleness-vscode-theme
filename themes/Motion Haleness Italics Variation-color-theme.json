@@ -110,7 +110,14 @@
 			"editorGutter.modifiedBackground": "#F4D35E",
 			"editorGutter.addedBackground": "#55D6BE",
 			"gitDecoration.modifiedResourceForeground": "#F4D35E",
-			"gitDecoration.untrackedResourceForeground": "#55D6BE"
+			"gitDecoration.untrackedResourceForeground": "#55D6BE",
+			"editorGutter.deletedBackground": "#FF715B",
+			"gitDecoration.addedResourceForeground": "#55D6BE",
+			"gitDecoration.deletedResourceForeground": "#FF715B",
+			"diffEditor.insertedTextBackground": "#55D6BE26",
+			"diffEditor.insertedLineBackground": "#55D6BE0F",
+			"diffEditor.removedTextBackground": "#FF715B26",
+			"diffEditor.removedLineBackground": "#FF715B0F"
 	},
 	"tokenColors": [
 		{
