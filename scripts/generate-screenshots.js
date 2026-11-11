@@ -53,9 +53,9 @@ const COLORS = {
 };
 
 function colorFor(classes) {
-  if (classes.includes("class_")) return "#F4D35E";
-  if (classes.includes("function_")) return "#76E5FC";
-  if (classes.includes("comment") || classes.includes("quote")) return "#a0aec0";
+  if (classes.some((c) => c.includes("class_"))) return "#F4D35E";
+  if (classes.some((c) => c.includes("function_"))) return "#76E5FC";
+  if (classes.some((c) => c.includes("comment") || c.includes("quote"))) return "#a0aec0";
   for (const c of classes) {
     if (COLORS[c]) return COLORS[c];
   }
@@ -161,7 +161,7 @@ function buildSvg(langLabel, fileName, code) {
       `<text x="${gutterX}" y="${y}" fill="#576773" font-family="${FONT}" font-size="${fontSize}" text-anchor="end">${i + 1}</text>`
     );
     const tspans = runs
-      .map((r) => `<tspan fill="${colorFor(r.classes)}">${escapeXml(r.text)}</tspan>`)
+      .map((r) => `<tspan fill="${colorFor(r.classes)}">${escapeXml(r.text).replace(/ /g, "&#160;")}</tspan>`)
       .join("");
     parts.push(`<text x="${codeX}" y="${y}" fill="#EEFFFF" font-family="${FONT}" font-size="${fontSize}">${tspans}</text>`);
   });
