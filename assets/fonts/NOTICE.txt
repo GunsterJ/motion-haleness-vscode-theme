@@ -1,11 +1,5 @@
-The Motion Haleness extension bundles the following fonts under the SIL Open Font License 1.1.
+The Motion Haleness extension bundles the following font under the SIL Open Font License 1.1.
 Full license text: see OFL.txt.
-
-Atkinson Hyperlegible
-Copyright 2020 Braille Institute of America, Inc.
-
-Atkinson Hyperlegible Mono
-Copyright 2020-2024 The Atkinson Hyperlegible Mono Project Authors (https://github.com/googlefonts/atkinson-hyperlegible-next-mono)
 
 Inconsolata
 Copyright 2006 The Inconsolata Project Authors

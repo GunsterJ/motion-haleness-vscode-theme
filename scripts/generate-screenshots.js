@@ -135,7 +135,7 @@ function buildSvg(langLabel, fileName, code) {
     parts.push(`<circle cx="${26 + i * 18}" cy="27" r="7" fill="${col}"/>`);
   }
   parts.push(
-    `<text x="${W / 2}" y="36" fill="#a0aec0" font-family="${FONT}" font-size="16" text-anchor="middle">${escapeXml(fileName)} &mdash; Motion Haleness</text>`
+    `<text x="${W / 2}" y="36" fill="#a0aec0" font-family="${FONT}" font-size="16" text-anchor="middle">${escapeXml(fileName)} &#8212; Motion Haleness</text>`
   );
 
   // tab bar
@@ -173,7 +173,7 @@ function buildSvg(langLabel, fileName, code) {
     `<text x="16" y="${sbY + 29}" fill="#EEFFFF" font-family="${FONT}" font-size="14">${langLabel.toUpperCase()}</text>`
   );
   parts.push(
-    `<text x="${W - 16}" y="${sbY + 29}" fill="#EEFFFF" font-family="${FONT}" font-size="14" text-anchor="end">Ln ${lines.length}, Col 1 &nbsp; UTF-8</text>`
+    `<text x="${W - 16}" y="${sbY + 29}" fill="#EEFFFF" font-family="${FONT}" font-size="14" text-anchor="end">Ln ${lines.length}, Col 1 &#160; UTF-8</text>`
   );
 
   parts.push("</svg>");

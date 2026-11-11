@@ -15,7 +15,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Editor widget, suggest and peek view colors
 - Semantic token colors for TypeScript and JavaScript highlighting
 - High-contrast chat colors (`chat.*`) for chat-based agents such as Codex, Kilo Code and Copilot Chat
-- Bundled fonts: **Inconsolata** (editor and terminal) and **Atkinson Hyperlegible** (Markdown preview), including configuration defaults and an install script
+- Bundled **Inconsolata** font (editor, terminal and Markdown preview), including configuration defaults and an install script
 - Coding agent themes:
   - Codex CLI syntax theme (`.tmTheme`)
   - Codex VS Code extension theme import (`codex-theme-v1` string)
