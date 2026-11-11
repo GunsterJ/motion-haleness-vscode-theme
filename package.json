@@ -55,8 +55,8 @@
                 "editor.fontWeight": {
                     "type": "string",
                     "enum": ["normal", "bold", "100", "200", "300", "400", "500", "600", "700", "800", "900"],
-                    "default": "300",
-                    "description": "Font weight used in the editor. Atkinson Hyperlegible Mono is a variable font (200-800); 300 keeps the code light and balanced."
+                    "default": "400",
+                    "description": "Font weight used in the editor. Atkinson Hyperlegible Mono is a variable font (200-800); 400 keeps the code readable without being too thin."
                 },
                 "terminal.integrated.fontFamily": {
                     "type": "string",
@@ -66,8 +66,8 @@
                 "terminal.integrated.fontWeight": {
                     "type": "string",
                     "enum": ["normal", "bold", "100", "200", "300", "400", "500", "600", "700", "800", "900"],
-                    "default": "300",
-                    "description": "Font weight used in the integrated terminal. Atkinson Hyperlegible Mono is a variable font (200-800); 300 keeps terminal output light and balanced."
+                    "default": "400",
+                    "description": "Font weight used in the integrated terminal. Atkinson Hyperlegible Mono is a variable font (200-800); 400 keeps terminal output readable without being too thin."
                 },
                 "markdown.preview.fontFamily": {
                     "type": "string",

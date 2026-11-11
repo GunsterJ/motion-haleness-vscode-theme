@@ -44,7 +44,7 @@ Requires Claude Code 2.1.118 or later:
 
 Motion Haleness ships the **Atkinson Hyperlegible** family (designed by the Braille Institute for maximum legibility), bundled in `assets/fonts/` under the SIL Open Font License 1.1:
 
-- **Atkinson Hyperlegible Mono** — monospace variable font (200–800), used for the editor and integrated terminal (default weight 300)
+- **Atkinson Hyperlegible Mono** — monospace variable font (200–800), used for the editor and integrated terminal (default weight 400)
 - **Atkinson Hyperlegible** — proportional, used for the Markdown preview
 
 To use them, install the fonts on your system:
