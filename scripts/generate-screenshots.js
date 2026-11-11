@@ -180,8 +180,22 @@ function buildSvg(langLabel, fileName, code) {
 
   const parts = [];
   parts.push(`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">`);
-  parts.push(`<defs><clipPath id="win"><rect x="${winX}" y="${winY}" width="${winW}" height="${winH}" rx="${RADIUS}"/></clipPath></defs>`);
-  parts.push(`<rect width="${W}" height="${H}" fill="#16181d"/>`);
+  parts.push(`<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="#14171d"/>
+  <stop offset="0.5" stop-color="#13262f"/>
+  <stop offset="1" stop-color="#241b35"/>
+</linearGradient>
+<filter id="blurT" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="150"/></filter>
+<filter id="blurP" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="190"/></filter>
+<filter id="blurY" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="120"/></filter>
+<filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.07 0"/></filter>
+<clipPath id="win"><rect x="${winX}" y="${winY}" width="${winW}" height="${winH}" rx="${RADIUS}"/></clipPath></defs>`);
+  parts.push(`<rect width="${W}" height="${H}" fill="url(#bg)"/>`);
+  parts.push(`<circle cx="${Math.round(W * 0.82)}" cy="${Math.round(H * 0.16)}" r="420" fill="#55D6BE" opacity="0.10" filter="url(#blurT)"/>`);
+  parts.push(`<circle cx="${Math.round(W * 0.14)}" cy="${Math.round(H * 0.86)}" r="460" fill="#9F5EF4" opacity="0.12" filter="url(#blurP)"/>`);
+  parts.push(`<circle cx="${Math.round(W * 0.5)}" cy="${Math.round(H * 0.97)}" r="300" fill="#0F8B8D" opacity="0.10" filter="url(#blurT)"/>`);
+  parts.push(`<circle cx="${Math.round(W * 0.92)}" cy="${Math.round(H * 0.9)}" r="220" fill="#F4D35E" opacity="0.07" filter="url(#blurY)"/>`);
+  parts.push(`<rect width="${W}" height="${H}" filter="url(#grain)"/>`);
   parts.push(`<g clip-path="url(#win)">`);
 
   // title bar
