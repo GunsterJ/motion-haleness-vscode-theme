@@ -20,7 +20,11 @@ export function TodoList({ items }: { items: Todo[] }) {
       {todos.map((todo) => (
         <li key={todo.id}>
           <label>
-            <input type="checkbox" checked={todo.done} onChange={() => toggle(todo.id)} />
+            <input
+              type="checkbox"
+              checked={todo.done}
+              onChange={() => toggle(todo.id)}
+            />
             <span>{todo.title}</span>
           </label>
         </li>
