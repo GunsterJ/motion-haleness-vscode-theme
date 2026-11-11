@@ -6,3 +6,6 @@ Copyright 2020 Braille Institute of America, Inc.
 
 Atkinson Hyperlegible Mono
 Copyright 2020-2024 The Atkinson Hyperlegible Mono Project Authors (https://github.com/googlefonts/atkinson-hyperlegible-next-mono)
+
+Inconsolata
+Copyright 2006 The Inconsolata Project Authors
