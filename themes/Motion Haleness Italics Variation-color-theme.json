@@ -135,15 +135,6 @@
 			}
 		},
 		{
-			"name": "Colors",
-			"scope": [
-				"constant.other.color"
-			],
-			"settings": {
-				"foreground": "#EEFFFF"
-			}
-		},
-		{
 			"name": "Invalid",
 			"scope": [
 				"invalid",
@@ -167,7 +158,7 @@
 		{
 			"name": "Meta",
 			"scope": [
-				"meta.tag",
+				"meta.tag"
 			],
 			"settings": {
 				"foreground": "#EEFFFF"
@@ -271,7 +262,6 @@
 			"name": "Class, Support",
 			"scope": [
 				"entity.name",
-				"support.type",
 				"support.class",
 				"support.orther.namespace.use.php",
 				"meta.use.php",
@@ -682,15 +672,6 @@
 			],
 			"settings": {
 				"foreground": "#9F5EF4"
-			}
-		},
-		{
-			"name": "Markdown - Raw Block Fenced",
-			"scope": [
-				"markup.raw.block.fenced.markdown"
-			],
-			"settings": {
-				"foreground": "#00000050"
 			}
 		},
 		{
