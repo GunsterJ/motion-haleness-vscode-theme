@@ -77,7 +77,7 @@
 			"tab.inactiveModifiedBorder": "#CCF5AC",
 			"tab.unfocusedActiveModifiedBorder": "#CCF5AC",
 			"tab.unfocusedInactiveModifiedBorder": "#CCF5AC",
-			"editorPane.background": "#F4D35E",
+			"editorPane.background": "#2b2d34",
 
 			"titleBar.activeBackground": "#212329",
 			"titleBar.activeForeground": "#eeffff",
