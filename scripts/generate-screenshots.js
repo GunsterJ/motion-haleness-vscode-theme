@@ -207,7 +207,10 @@ function buildSvg(langLabel, fileName, code) {
     const tspans = [];
     for (const r of runs) {
       for (const seg of splitByChar(r.text, colorFor(r.classes))) {
-        tspans.push(`<tspan fill="${seg.color}">${escapeXml(seg.text).replace(/ /g, "&#160;")}</tspan>`);
+        const escaped = escapeXml(seg.text)
+          .replace(/ /g, "&#160;")
+          .replace(/\t/g, "&#160;&#160;&#160;&#160;");
+        tspans.push(`<tspan fill="${seg.color}">${escaped}</tspan>`);
       }
     }
     parts.push(`<text x="${codeX}" y="${y}" fill="#EEFFFF" font-family="${FONT}" font-size="${fontSize}">${tspans.join("")}</text>`);
