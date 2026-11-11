@@ -117,7 +117,25 @@
 			"diffEditor.insertedTextBackground": "#55D6BE26",
 			"diffEditor.insertedLineBackground": "#55D6BE0F",
 			"diffEditor.removedTextBackground": "#FF715B26",
-			"diffEditor.removedLineBackground": "#FF715B0F"
+			"diffEditor.removedLineBackground": "#FF715B0F",
+			"terminal.background": "#212329",
+			"terminal.foreground": "#eeffff",
+			"terminal.ansiBlack": "#212329",
+			"terminal.ansiRed": "#FF715B",
+			"terminal.ansiGreen": "#55D6BE",
+			"terminal.ansiYellow": "#F4D35E",
+			"terminal.ansiBlue": "#72A8D8",
+			"terminal.ansiMagenta": "#9F5EF4",
+			"terminal.ansiCyan": "#76E5FC",
+			"terminal.ansiWhite": "#EEFFFF",
+			"terminal.ansiBrightBlack": "#576773",
+			"terminal.ansiBrightRed": "#FF715B",
+			"terminal.ansiBrightGreen": "#55D6BE",
+			"terminal.ansiBrightYellow": "#F4D35E",
+			"terminal.ansiBrightBlue": "#72A8D8",
+			"terminal.ansiBrightMagenta": "#9F5EF4",
+			"terminal.ansiBrightCyan": "#76E5FC",
+			"terminal.ansiBrightWhite": "#FFFFFF"
 	},
 	"tokenColors": [
 		{
