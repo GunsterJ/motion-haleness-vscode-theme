@@ -44,9 +44,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Markdown fenced code blocks and language hints are now visible
 - Removed dead token rules and duplicate scopes, and fixed a trailing comma so the theme files are valid JSON
 
-## [0.4.0] - 2026-11-11
+## [0.4.0]
 
-- Theme improvements later shipped as 1.0.0: readable comments, diff and git gutter colors, terminal ANSI colors, bracket pair and widget colors, semantic tokens, and high-contrast chat colors for AI coding agents
+- Maintenance release
 
 ## [0.3.0] - 2020-12-04
 
