@@ -49,30 +49,30 @@
             "properties": {
                 "editor.fontFamily": {
                     "type": "string",
-                    "default": "Google Sans Code, Menlo, Monaco, 'Courier New', monospace",
-                    "description": "Monospace font family used in the editor. Motion Haleness bundles Google Sans Code; install it from the assets/fonts folder if it is not present on your system."
+                    "default": "Atkinson Hyperlegible Mono, Menlo, Monaco, 'Courier New', monospace",
+                    "description": "Monospace font family used in the editor. Motion Haleness bundles Atkinson Hyperlegible Mono; install it from the assets/fonts folder if it is not present on your system."
                 },
                 "editor.fontWeight": {
                     "type": "string",
                     "enum": ["normal", "bold", "100", "200", "300", "400", "500", "600", "700", "800", "900"],
                     "default": "300",
-                    "description": "Font weight used in the editor. Google Sans Code is a variable font (300-800); 300 keeps the code light and balanced."
+                    "description": "Font weight used in the editor. Atkinson Hyperlegible Mono is a variable font (200-800); 300 keeps the code light and balanced."
                 },
                 "terminal.integrated.fontFamily": {
                     "type": "string",
-                    "default": "Google Sans Code, Menlo, Monaco, 'Courier New', monospace",
-                    "description": "Monospace font family used in the integrated terminal. Motion Haleness bundles Google Sans Code; install it from the assets/fonts folder if it is not present on your system."
+                    "default": "Atkinson Hyperlegible Mono, Menlo, Monaco, 'Courier New', monospace",
+                    "description": "Monospace font family used in the integrated terminal. Motion Haleness bundles Atkinson Hyperlegible Mono; install it from the assets/fonts folder if it is not present on your system."
                 },
                 "terminal.integrated.fontWeight": {
                     "type": "string",
                     "enum": ["normal", "bold", "100", "200", "300", "400", "500", "600", "700", "800", "900"],
                     "default": "300",
-                    "description": "Font weight used in the integrated terminal. Google Sans Code is a variable font (300-800); 300 keeps terminal output light and balanced."
+                    "description": "Font weight used in the integrated terminal. Atkinson Hyperlegible Mono is a variable font (200-800); 300 keeps terminal output light and balanced."
                 },
                 "markdown.preview.fontFamily": {
                     "type": "string",
-                    "default": "Google Sans Flex, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                    "description": "Font family used in the Markdown preview. Motion Haleness bundles Google Sans Flex; install it from the assets/fonts folder if it is not present on your system."
+                    "default": "Atkinson Hyperlegible, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+                    "description": "Font family used in the Markdown preview. Motion Haleness bundles Atkinson Hyperlegible; install it from the assets/fonts folder if it is not present on your system."
                 }
             }
         }
