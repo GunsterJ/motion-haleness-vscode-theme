@@ -135,7 +135,14 @@
 			"terminal.ansiBrightBlue": "#72A8D8",
 			"terminal.ansiBrightMagenta": "#9F5EF4",
 			"terminal.ansiBrightCyan": "#76E5FC",
-			"terminal.ansiBrightWhite": "#FFFFFF"
+			"terminal.ansiBrightWhite": "#FFFFFF",
+			"editorBracketHighlight.foreground1": "#76E5FC",
+			"editorBracketHighlight.foreground2": "#F4D35E",
+			"editorBracketHighlight.foreground3": "#9F5EF4",
+			"editorBracketHighlight.foreground4": "#55D6BE",
+			"editorBracketHighlight.foreground5": "#FF715B",
+			"editorBracketHighlight.foreground6": "#CCF5AC",
+			"editorBracketHighlight.unexpectedBracket.foreground": "#FF715B"
 	},
 	"tokenColors": [
 		{
