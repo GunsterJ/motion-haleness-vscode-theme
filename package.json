@@ -43,6 +43,21 @@
                 "uiTheme": "vs-dark",
                 "path": "./themes/Motion Haleness Italics Variation-color-theme.json"
             }
-        ]
+        ],
+        "configuration": {
+            "title": "Motion Haleness",
+            "properties": {
+                "editor.fontFamily": {
+                    "type": "string",
+                    "default": "Space Mono, Menlo, Monaco, 'Courier New', monospace",
+                    "description": "Monospace font family used in the editor. Motion Haleness bundles Space Mono; install it from the assets/fonts folder if it is not present on your system."
+                },
+                "terminal.integrated.fontFamily": {
+                    "type": "string",
+                    "default": "Space Mono, Menlo, Monaco, 'Courier New', monospace",
+                    "description": "Monospace font family used in the integrated terminal. Motion Haleness bundles Space Mono; install it from the assets/fonts folder if it is not present on your system."
+                }
+            }
+        }
     }
 }
