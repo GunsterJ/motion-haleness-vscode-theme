@@ -44,7 +44,7 @@ Requires Claude Code 2.1.118 or later:
 
 Motion Haleness ships two fonts from Google, bundled in `assets/fonts/` as variable fonts (SIL Open Font License 1.1):
 
-- **Google Sans Code** — monospace, used for the editor and integrated terminal (default weight 400; variable 300–800)
+- **Google Sans Code** — monospace, used for the editor and integrated terminal (default weight 300; variable 300–800)
 - **Google Sans Flex** — proportional, used for the Markdown preview
 
 To use them, install the fonts on your system:
