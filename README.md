@@ -40,6 +40,17 @@ Requires Claude Code 2.1.118 or later:
 1. Copy `coding-agents/claude-code/motion-haleness.json` to `~/.claude/themes/`
 2. Run `claude` and select it via `/theme` (appears as `custom:motion-haleness`), or set `"theme": "custom:motion-haleness"` in `~/.claude/settings.json`
 
+## Fonts
+
+Motion Haleness ships **Space Mono**, bundled in `assets/fonts/` (SIL Open Font License 1.1). The extension defaults the editor and integrated terminal to Space Mono.
+
+To use it, install the fonts on your system:
+
+- **macOS:** run `./scripts/install-fonts.sh`, or copy the `.ttf` files from `assets/fonts/` to `~/Library/Fonts`
+- **Other platforms:** install the `.ttf` files from `assets/fonts/` with your platform's font manager
+
+Restart VS Code after installing. The defaults set `"Space Mono"` for both `editor.fontFamily` and `terminal.integrated.fontFamily` — you can always override these in your own settings.
+
 ## Screenshots
 
 ### Motion Haleness
