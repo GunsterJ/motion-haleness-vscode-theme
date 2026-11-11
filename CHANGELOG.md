@@ -43,3 +43,23 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Fixed
 - Markdown fenced code blocks and language hints are now visible
 - Removed dead token rules and duplicate scopes, and fixed a trailing comma so the theme files are valid JSON
+
+## [0.4.0] - 2026-11-11
+
+- Theme improvements later shipped as 1.0.0: readable comments, diff and git gutter colors, terminal ANSI colors, bracket pair and widget colors, semantic tokens, and high-contrast chat colors for AI coding agents
+
+## [0.3.0] - 2020-12-04
+
+### Added
+- New **Motion Haleness Italic** variant
+- Contrast fix for tab highlighting
+
+## [0.2.0] - 2020-12-03
+
+### Added
+- Extension icon
+- Updated description and packaging (0.2.x line)
+
+## [0.1.0] - 2020-12-03
+
+- Initial release of Motion Haleness
