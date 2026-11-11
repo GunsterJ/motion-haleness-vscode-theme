@@ -1,6 +1,7 @@
 {
 	"name": "Motion Haleness Italics",
 	"type": "dark",
+	"semanticHighlighting": true,
 	"colors": {
 		"focusBorder": "#A9B4C2",
 			"foreground": "#0F8B8D",
@@ -163,6 +164,27 @@
 			"peekViewResult.matchHighlightBackground": "#9f5ef433",
 			"peekViewTitle.background": "#262A33",
 			"peekViewTitleLabel.foreground": "#eeffff"
+	},
+	"semanticTokenColors": {
+		"class": "#F4D35E",
+		"interface": "#F4D35E",
+		"enum": "#F4D35E",
+		"namespace": "#F4D35E",
+		"type": "#A9B4C2",
+		"typeParameter": "#9F5EF4",
+		"property": "#EEFFFF",
+		"member": "#76E5FC",
+		"function": "#76E5FC",
+		"method": "#76E5FC",
+		"parameter": "#9F5EF4",
+		"variable": "#EEFFFF",
+		"variable.readonly": "#FBF2C0",
+		"enumMember": "#F4D35E",
+		"decorator": "#76E5FC",
+		"keyword": "#55D6BE",
+		"string": "#76E5FC",
+		"number": "#9F5EF4",
+		"comment": "#8493A4"
 	},
 	"tokenColors": [
 		{
