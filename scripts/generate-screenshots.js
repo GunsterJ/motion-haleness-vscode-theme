@@ -18,6 +18,8 @@ const LANGS = {
   css: "css",
   sql: "sql",
   js: "javascript",
+  json: "json",
+  md: "markdown",
 };
 
 const COLORS = {

@@ -1,0 +1,17 @@
+{
+  "name": "motion-haleness",
+  "version": "1.1.0",
+  "settings": {
+    "font": "Inconsolata",
+    "size": 15,
+    "weight": 400,
+    "semanticHighlighting": true,
+    "agents": ["claude", "codex", "kilo"]
+  },
+  "colors": {
+    "background": "#212329",
+    "foreground": "#EEFFFF",
+    "accent": "#55D6BE",
+    "warning": "#F4D35E"
+  }
+}
