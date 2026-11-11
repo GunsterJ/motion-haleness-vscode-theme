@@ -42,14 +42,14 @@ Requires Claude Code 2.1.118 or later:
 
 ## Fonts
 
-Motion Haleness ships **Space Mono**, bundled in `assets/fonts/` (SIL Open Font License 1.1). The extension defaults the editor and integrated terminal to Space Mono.
+Motion Haleness ships **Google Sans Code**, bundled in `assets/fonts/` as a variable font (SIL Open Font License 1.1). The extension defaults the editor and integrated terminal to Google Sans Code.
 
 To use it, install the fonts on your system:
 
 - **macOS:** run `./scripts/install-fonts.sh`, or copy the `.ttf` files from `assets/fonts/` to `~/Library/Fonts`
 - **Other platforms:** install the `.ttf` files from `assets/fonts/` with your platform's font manager
 
-Restart VS Code after installing. The defaults set `"Space Mono"` for both `editor.fontFamily` and `terminal.integrated.fontFamily` — you can always override these in your own settings.
+Restart VS Code after installing. The defaults set `"Google Sans Code"` for both `editor.fontFamily` and `terminal.integrated.fontFamily` — you can always override these in your own settings.
 
 ## Screenshots
 
