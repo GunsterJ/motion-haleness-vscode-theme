@@ -1,7 +1,7 @@
 {
     "name": "motion-haleness",
     "displayName": "Motion Haleness",
-    "description": "A VS Code theme that's aesthetically pleasing, atleast for me .. 🎆",
+    "description": "A modern, high-contrast dark color theme for Visual Studio Code with semantic highlighting and a readable diff experience.",
     "publisher": "erole-attack",
     "version": "1.0.0",
     "engines": {
@@ -20,24 +20,16 @@
         "Themes"
     ],
     "keywords": [
-        "erole-attack Theme",
-        "Dark Theme",
-        "Minimal",
-        "React",
-        "Gatsby",
-        "Eerie Black",
-        "Raisin Black",
-        "Black Coral",
-        "Orange Yellow Crayola",
-        "Bittersweet",
-        "Cadet Blue Crayola",
-        "Dark Cyan",
-        "Blond",
-        "Turquoise",
-        "Medium Purple",
-        "Jazzbery Jam",
-        "Sky Blue Crayola",
-        "Tea Green"
+        "dark",
+        "dark theme",
+        "color theme",
+        "minimal",
+        "high contrast",
+        "semantic highlighting",
+        "syntax highlighting",
+        "italic",
+        "vscode theme",
+        "custom theme"
     ],
     "contributes": {
         "themes": [
