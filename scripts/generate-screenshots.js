@@ -10,6 +10,7 @@ const OUT_DIR = process.argv[2] || "/tmp/mh-screenshots";
 
 const LANGS = {
   ts: "typescript",
+  tsx: "tsx",
   py: "python",
   go: "go",
   rs: "rust",
@@ -82,16 +83,59 @@ function escapeXml(s) {
 
 function tokensFromHtml(html) {
   const runs = [];
-  const re = /<span class="([^"]+)">([\s\S]*?)<\/span>|([^<]+)/g;
-  let m;
-  while ((m = re.exec(html)) !== null) {
-    if (m[1]) {
-      runs.push({ classes: m[1].split(/\s+/), text: decodeHtml(m[2]) });
-    } else if (m[3] !== undefined) {
-      runs.push({ classes: [], text: decodeHtml(m[3]) });
+  const stack = [];
+  let text = "";
+  let i = 0;
+  const openRe = /^<span class="([^"]+)">/;
+  const push = (classes) => {
+    if (text) {
+      runs.push({ classes: [...classes], text: decodeHtml(text) });
+      text = "";
+    }
+  };
+  while (i < html.length) {
+    if (html.startsWith("<span class=", i)) {
+      const m = openRe.exec(html.slice(i));
+      push(stack.length ? stack[stack.length - 1] : []);
+      stack.push(m[1].split(/\s+/));
+      i += m[0].length;
+    } else if (html.startsWith("</span>", i)) {
+      push(stack.length ? stack[stack.length - 1] : []);
+      stack.pop();
+      i += 7;
+    } else {
+      text += html[i];
+      i += 1;
     }
   }
+  push([]);
   return runs;
+}
+
+const PUNCT_RE = /[{}()[\];,.:]/;
+const OP_RE = /[=+\-*/%&|!<>?]/;
+
+function splitByChar(text, color) {
+  if (color !== "#EEFFFF") return [{ text, color }];
+  const out = [];
+  let buf = "";
+  let bufColor = "#EEFFFF";
+  const flush = () => {
+    if (buf) {
+      out.push({ text: buf, color: bufColor });
+      buf = "";
+    }
+  };
+  for (const ch of text) {
+    const c = PUNCT_RE.test(ch) ? "#55D6BE" : OP_RE.test(ch) ? "#a0aec0" : "#EEFFFF";
+    if (c !== bufColor) {
+      flush();
+      bufColor = c;
+    }
+    buf += ch;
+  }
+  flush();
+  return out;
 }
 
 const W = 1440;
@@ -160,10 +204,13 @@ function buildSvg(langLabel, fileName, code) {
     parts.push(
       `<text x="${gutterX}" y="${y}" fill="#576773" font-family="${FONT}" font-size="${fontSize}" text-anchor="end">${i + 1}</text>`
     );
-    const tspans = runs
-      .map((r) => `<tspan fill="${colorFor(r.classes)}">${escapeXml(r.text).replace(/ /g, "&#160;")}</tspan>`)
-      .join("");
-    parts.push(`<text x="${codeX}" y="${y}" fill="#EEFFFF" font-family="${FONT}" font-size="${fontSize}">${tspans}</text>`);
+    const tspans = [];
+    for (const r of runs) {
+      for (const seg of splitByChar(r.text, colorFor(r.classes))) {
+        tspans.push(`<tspan fill="${seg.color}">${escapeXml(seg.text).replace(/ /g, "&#160;")}</tspan>`);
+      }
+    }
+    parts.push(`<text x="${codeX}" y="${y}" fill="#EEFFFF" font-family="${FONT}" font-size="${fontSize}">${tspans.join("")}</text>`);
   });
 
   // status bar

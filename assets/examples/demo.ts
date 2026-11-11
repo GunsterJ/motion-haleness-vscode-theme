@@ -1,25 +1,25 @@
-// TypeScript demo — showcasing the Motion Haleness palette
-import { useState, useEffect } from "react";
+// TypeScript demo — types, generics and async helpers
+type Status = "idle" | "loading" | "success" | "error";
 
-interface Todo {
+interface User {
   id: number;
-  title: string;
-  completed: boolean;
+  name: string;
+  status: Status;
 }
 
-const FILTERS = ["all", "active", "done"] as const;
+const CACHE_TTL_MS = 5 * 60 * 1000;
 
-export function useTodos(initial: Todo[]) {
-  const [todos, setTodos] = useState<Todo[]>(initial);
+async function fetchUsers(limit: number = 20): Promise<User[]> {
+  const res = await fetch(`/api/users?limit=${limit}`);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const data: User[] = await res.json();
+  return data.filter((u) => u.status !== "error");
+}
 
-  const toggle = (id: number) =>
-    setTodos((prev) =>
-      prev.map((t) => (t.id === id ? { ...t, completed: !t.completed } : t))
-    );
-
-  useEffect(() => {
-    console.log(`todos updated: ${todos.length}`);
-  }, [todos]);
-
-  return { todos, toggle };
+function groupBy<T, K extends keyof T>(items: T[], key: K): Map<T[K], T[]> {
+  return items.reduce((map, item) => {
+    const k = item[key];
+    (map.get(k) ?? []).push(item);
+    return map;
+  }, new Map<T[K], T[]>());
 }

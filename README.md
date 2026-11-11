@@ -2,7 +2,7 @@
 
 A modern, high-contrast dark color theme for Visual Studio Code. Ready to install, ready to use and nothing to configure.
 
-Motion Haleness is tuned for the way you code today. It pairs beautifully with AI coding agents like **Claude Code**, **Codex** and **Kilo Code**, with dedicated high-contrast chat colors that keep agent conversations easy to read. And because the palette is language-agnostic, your code looks consistent and balanced in TypeScript, JavaScript, Python, Go, Rust, HTML, CSS, SQL, and everything else your editor can parse.
+Motion Haleness is tuned for the way you code today. It pairs beautifully with AI coding agents like **Claude Code**, **Codex** and **Kilo Code**, with dedicated high-contrast chat colors that keep agent conversations easy to read. And because the palette is language-agnostic, your code looks consistent and balanced in TypeScript, React (TSX), JavaScript, Python, Go, Rust, HTML, CSS, SQL, and everything else your editor can parse.
 
 ## Features
 
@@ -16,6 +16,8 @@ Motion Haleness is tuned for the way you code today. It pairs beautifully with A
 ## Screenshots
 
 <img src="assets/screenshots/demo-ts.png" width="700" alt="TypeScript">
+
+<img src="assets/screenshots/demo-tsx.png" width="700" alt="React (TSX)">
 
 <img src="assets/screenshots/demo-py.png" width="700" alt="Python">
 
