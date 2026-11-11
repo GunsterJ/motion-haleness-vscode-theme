@@ -164,47 +164,56 @@ function buildSvg(langLabel, fileName, code) {
   }
   lines.push(line);
 
+  const PAD = 56;
+  const RADIUS = 14;
+  const winX = PAD;
+  const winY = PAD;
+  const winW = W - 2 * PAD;
+  const winH = H - 2 * PAD;
   const tabBarH = 46;
   const titleBarH = 54;
   const editorY = titleBarH + tabBarH;
   const lineH = 32;
   const fontSize = 18;
-  const codeX = 88;
-  const gutterX = 62;
+  const codeX = winX + 88;
+  const gutterX = winX + 62;
 
   const parts = [];
   parts.push(`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">`);
+  parts.push(`<defs><clipPath id="win"><rect x="${winX}" y="${winY}" width="${winW}" height="${winH}" rx="${RADIUS}"/></clipPath></defs>`);
+  parts.push(`<rect width="${W}" height="${H}" fill="#16181d"/>`);
+  parts.push(`<g clip-path="url(#win)">`);
 
   // title bar
-  parts.push(`<rect width="${W}" height="${titleBarH}" fill="#262A33"/>`);
+  parts.push(`<rect x="${winX}" y="${winY}" width="${winW}" height="${titleBarH}" fill="#262A33"/>`);
   for (const [i, col] of ["#FF715B", "#F4D35E", "#55D6BE"].entries()) {
-    parts.push(`<circle cx="${26 + i * 18}" cy="27" r="7" fill="${col}"/>`);
+    parts.push(`<circle cx="${winX + 26 + i * 18}" cy="${winY + 27}" r="7" fill="${col}"/>`);
   }
   parts.push(
-    `<text x="${W / 2}" y="36" fill="#a0aec0" font-family="${FONT}" font-size="16" text-anchor="middle">${escapeXml(fileName)} &#8212; Motion Haleness</text>`
+    `<text x="${W / 2}" y="${winY + 36}" fill="#a0aec0" font-family="${FONT}" font-size="16" text-anchor="middle">${escapeXml(fileName)} &#8212; Motion Haleness</text>`
   );
 
   // tab bar
-  parts.push(`<rect y="${titleBarH}" width="${W}" height="${tabBarH}" fill="#2b2d34"/>`);
-  parts.push(`<rect x="8" y="${titleBarH + 2}" width="170" height="${tabBarH - 2}" fill="#0F8B8D" rx="4"/>`);
+  parts.push(`<rect x="${winX}" y="${winY + titleBarH}" width="${winW}" height="${tabBarH}" fill="#2b2d34"/>`);
+  parts.push(`<rect x="${winX + 8}" y="${winY + titleBarH + 2}" width="170" height="${tabBarH - 2}" fill="#0F8B8D" rx="4"/>`);
   parts.push(
-    `<text x="24" y="${titleBarH + tabBarH / 2 + 6}" fill="#EEFFFF" font-family="${FONT}" font-size="15">${escapeXml(fileName)}</text>`
+    `<text x="${winX + 24}" y="${winY + titleBarH + tabBarH / 2 + 6}" fill="#EEFFFF" font-family="${FONT}" font-size="15">${escapeXml(fileName)}</text>`
   );
   parts.push(
-    `<text x="190" y="${titleBarH + tabBarH / 2 + 6}" fill="#a0aec0" font-family="${FONT}" font-size="15">utils.ts</text>`
+    `<text x="${winX + 190}" y="${winY + titleBarH + tabBarH / 2 + 6}" fill="#a0aec0" font-family="${FONT}" font-size="15">utils.ts</text>`
   );
   parts.push(
-    `<text x="280" y="${titleBarH + tabBarH / 2 + 6}" fill="#a0aec0" font-family="${FONT}" font-size="15">README.md</text>`
+    `<text x="${winX + 280}" y="${winY + titleBarH + tabBarH / 2 + 6}" fill="#a0aec0" font-family="${FONT}" font-size="15">README.md</text>`
   );
 
   // editor background
-  parts.push(`<rect y="${editorY}" width="${W}" height="${H - editorY}" fill="#212329"/>`);
+  parts.push(`<rect x="${winX}" y="${winY + editorY}" width="${winW}" height="${winH - editorY}" fill="#212329"/>`);
 
   // line numbers + code
   const CHAR_W = fontSize * 0.6;
   const charWidth = (t) => [...t].reduce((n, ch) => n + (ch === "\t" ? 4 : 1), 0);
   lines.forEach((runs, i) => {
-    const y = editorY + 38 + i * lineH;
+    const y = winY + editorY + 38 + i * lineH;
     parts.push(
       `<text x="${gutterX}" y="${y}" fill="#576773" font-family="${FONT}" font-size="${fontSize}" text-anchor="end">${i + 1}</text>`
     );
@@ -232,15 +241,17 @@ function buildSvg(langLabel, fileName, code) {
   });
 
   // status bar
-  const sbY = H - 48;
-  parts.push(`<rect y="${sbY}" width="${W}" height="${48}" fill="#0F8B8D"/>`);
+  const sbY = winY + winH - 48;
+  parts.push(`<rect x="${winX}" y="${sbY}" width="${winW}" height="${48}" fill="#0F8B8D"/>`);
   parts.push(
-    `<text x="16" y="${sbY + 29}" fill="#EEFFFF" font-family="${FONT}" font-size="14">${langLabel.toUpperCase()}</text>`
+    `<text x="${winX + 16}" y="${sbY + 29}" fill="#EEFFFF" font-family="${FONT}" font-size="14">${langLabel.toUpperCase()}</text>`
   );
   parts.push(
-    `<text x="${W - 16}" y="${sbY + 29}" fill="#EEFFFF" font-family="${FONT}" font-size="14" text-anchor="end">Ln ${lines.length}, Col 1 &#160; UTF-8</text>`
+    `<text x="${winX + winW - 16}" y="${sbY + 29}" fill="#EEFFFF" font-family="${FONT}" font-size="14" text-anchor="end">Ln ${lines.length}, Col 1 &#160; UTF-8</text>`
   );
 
+  parts.push(`</g>`);
+  parts.push(`<rect x="${winX}" y="${winY}" width="${winW}" height="${winH}" rx="${RADIUS}" fill="none" stroke="#3a4150" stroke-width="2"/>`);
   parts.push("</svg>");
   return parts.join("\n");
 }
