@@ -11,6 +11,35 @@ A modern dark color theme for Visual Studio Code. Motion Haleness combines a bal
 - Bracket pair, editor widget and peek view colors that match the theme
 - Two variants: **Motion Haleness** and **Motion Haleness Italic**
 
+## Works with coding agents
+
+Motion Haleness pairs nicely with coding agents that run in your terminal.
+
+### Kilo Code
+
+Works out of the box — Kilo Code renders inside VS Code and automatically uses the active color theme.
+
+### Codex CLI
+
+Motion Haleness syntax highlighting for code blocks and diffs:
+
+1. Copy `coding-agents/codex/motion-haleness.tmTheme` to `~/.codex/themes/`
+2. Run `codex` and select it via `/theme`, or set it in `~/.codex/config.toml`:
+
+   ```toml
+   [tui]
+   theme = "motion-haleness"
+   ```
+
+Codex renders its main UI with your terminal's palette, not the theme. For a colorful, high-contrast Codex UI, apply the Motion Haleness ANSI colors from the theme to your terminal profile (the same palette used by the VS Code terminal).
+
+### Claude Code
+
+Requires Claude Code 2.1.118 or later:
+
+1. Copy `coding-agents/claude-code/motion-haleness.json` to `~/.claude/themes/`
+2. Run `claude` and select it via `/theme` (appears as `custom:motion-haleness`), or set `"theme": "custom:motion-haleness"` in `~/.claude/settings.json`
+
 ## Screenshots
 
 ### Motion Haleness
