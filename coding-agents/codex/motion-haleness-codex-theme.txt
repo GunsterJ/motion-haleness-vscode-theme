@@ -1,0 +1,1 @@
+codex-theme-v1:{"codeThemeId":"one-dark-pro","theme":{"accent":"#55D6BE","accentSource":"custom","ink":"#EEFFFF","surface":"#212329","opaqueWindows":true,"fonts":{"ui":null,"content":null,"code":"Inconsolata"},"semanticColors":{"diffAdded":"#55D6BE","diffRemoved":"#FF715B"}},"variant":"dark"}

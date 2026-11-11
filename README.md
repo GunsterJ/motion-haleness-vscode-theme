@@ -36,6 +36,14 @@ Codex renders its main UI (chat text, borders, banners) with your terminal's ANS
 - **VS Code integrated terminal:** already uses the theme's palette (open a new terminal after switching the theme)
 - **macOS Terminal.app:** double-click `coding-agents/terminal/motion-haleness.terminal` to import the "Motion Haleness" profile, then set it as default via Terminal → Preferences → Profiles → Default
 
+### Codex (VS Code extension)
+
+The Codex chat panel is a self-contained webview with its own appearance settings — it does not fully follow the VS Code theme. To match Motion Haleness:
+
+1. Open the Codex panel → **Settings → Appearance**
+2. **Import** the Motion Haleness theme: paste the `codex-theme-v1:` value from `coding-agents/codex/motion-haleness-codex-theme.txt`
+3. Or simply pick a built-in high-contrast theme (e.g. `one-dark-pro` or `dark-plus`) and set the accent to `#55D6BE`
+
 ### Claude Code
 
 Requires Claude Code 2.1.118 or later:
