@@ -5,7 +5,7 @@
 	"colors": {
 		"focusBorder": "#A9B4C2",
 			"foreground": "#EEFFFF",
-			"descriptionForeground": "#8493A4",
+			"descriptionForeground": "#576773",
 			"widget.shadow": "#08090a",
 			"icon.foreground": "#eeffff",
 
@@ -97,7 +97,7 @@
 			"editor.findMatchHighlightBackground": "#9f5ef481",
 			"editor.hoverHighlightBackground": "#76e6fc79",
 			"editor.lineHighlightBorder": "#ffffff00",
-			"editorWhitespace.foreground": "#39414D",
+			"editorWhitespace.foreground": "#262A33",
 			"editorBracketMatch.background": "#76e6fc33",
 
 			"statusBar.background": "#0F8B8D",
@@ -130,14 +130,14 @@
 			"terminal.ansiMagenta": "#9F5EF4",
 			"terminal.ansiCyan": "#76E5FC",
 			"terminal.ansiWhite": "#EEFFFF",
-			"terminal.ansiBrightBlack": "#8493A4",
-			"terminal.ansiBrightRed": "#FF8A74",
-			"terminal.ansiBrightGreen": "#7DE8D2",
-			"terminal.ansiBrightYellow": "#F8E08A",
-			"terminal.ansiBrightBlue": "#8FBEEC",
-			"terminal.ansiBrightMagenta": "#B883F7",
-			"terminal.ansiBrightCyan": "#9BEEFF",
-			"terminal.ansiBrightWhite": "#FFFFFF",
+			"terminal.ansiBrightBlack": "#576773",
+			"terminal.ansiBrightRed": "#FF715B",
+			"terminal.ansiBrightGreen": "#55D6BE",
+			"terminal.ansiBrightYellow": "#F4D35E",
+			"terminal.ansiBrightBlue": "#72A8D8",
+			"terminal.ansiBrightMagenta": "#9F5EF4",
+			"terminal.ansiBrightCyan": "#76E5FC",
+			"terminal.ansiBrightWhite": "#EEFFFF",
 			"editorBracketHighlight.foreground1": "#76E5FC",
 			"editorBracketHighlight.foreground2": "#F4D35E",
 			"editorBracketHighlight.foreground3": "#9F5EF4",
@@ -168,7 +168,7 @@
 			"chat.requestBackground": "#262A33",
 			"chat.requestBorder": "#4A5667",
 			"chat.requestBubbleBackground": "#2B2D34",
-			"chat.requestBubbleHoverBackground": "#31353F",
+			"chat.requestBubbleHoverBackground": "#2b2d34",
 			"chat.requestCodeBorder": "#4A5667",
 			"chat.slashCommandBackground": "#0F8B8D",
 			"chat.slashCommandForeground": "#EEFFFF",
@@ -199,7 +199,7 @@
 		"keyword": "#55D6BE",
 		"string": "#76E5FC",
 		"number": "#9F5EF4",
-		"comment": "#8493A4"
+		"comment": "#a0aec0"
 	},
 	"tokenColors": [
 		{
@@ -210,7 +210,7 @@
 			],
 			"settings": {
 				"fontStyle": "italic",
-				"foreground": "#8493A4"
+				"foreground": "#a0aec0"
 			}
 		},
 		{
