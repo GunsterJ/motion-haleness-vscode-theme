@@ -696,7 +696,7 @@
 				"punctuation.definition.fenced.markdown"
 			],
 			"settings": {
-				"foreground": "#00000050"
+				"foreground": "#576773"
 			}
 		},
 		{
@@ -716,7 +716,7 @@
 				"variable.language.fenced.markdown"
 			],
 			"settings": {
-				"foreground": "#0F8B8D"
+				"foreground": "#A9B4C2"
 			}
 		},
 		{
