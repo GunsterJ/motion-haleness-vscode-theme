@@ -199,18 +199,31 @@ function buildSvg(langLabel, fileName, code) {
   parts.push(`<rect y="${editorY}" width="${W}" height="${H - editorY}" fill="#212329"/>`);
 
   // line numbers + code
+  const CHAR_W = fontSize * 0.6;
+  const charWidth = (t) => [...t].reduce((n, ch) => n + (ch === "\t" ? 4 : 1), 0);
   lines.forEach((runs, i) => {
     const y = editorY + 38 + i * lineH;
     parts.push(
       `<text x="${gutterX}" y="${y}" fill="#576773" font-family="${FONT}" font-size="${fontSize}" text-anchor="end">${i + 1}</text>`
     );
     const tspans = [];
+    let pos = 0;
+    let prevWord = "";
     for (const r of runs) {
-      for (const seg of splitByChar(r.text, colorFor(r.classes))) {
-        const escaped = escapeXml(seg.text)
-          .replace(/ /g, "&#160;")
-          .replace(/\t/g, "&#160;&#160;&#160;&#160;");
-        tspans.push(`<tspan fill="${seg.color}">${escaped}</tspan>`);
+      for (const raw of splitByChar(r.text, colorFor(r.classes))) {
+        const trimmed = raw.text.trim();
+        if (!trimmed) {
+          pos += charWidth(raw.text);
+          continue;
+        }
+        const leading = (raw.text.match(/^\s*/) || [""])[0];
+        const trailing = (raw.text.match(/\s*$/) || [""])[0];
+        pos += charWidth(leading);
+        let color = raw.color;
+        if (langLabel === "go" && prevWord === "type" && color === "#EEFFFF") color = "#F4D35E";
+        tspans.push(`<tspan x="${codeX + pos * CHAR_W}" fill="${color}">${escapeXml(trimmed)}</tspan>`);
+        pos += charWidth(trimmed) + charWidth(trailing);
+        prevWord = trimmed;
       }
     }
     parts.push(`<text x="${codeX}" y="${y}" fill="#EEFFFF" font-family="${FONT}" font-size="${fontSize}">${tspans.join("")}</text>`);
