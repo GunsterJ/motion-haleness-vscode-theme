@@ -163,7 +163,21 @@
 			"peekViewResult.selectionBackground": "#0F8B8D",
 			"peekViewResult.matchHighlightBackground": "#9f5ef433",
 			"peekViewTitle.background": "#262A33",
-			"peekViewTitleLabel.foreground": "#eeffff"
+			"peekViewTitleLabel.foreground": "#eeffff",
+			"chat.requestBackground": "#262A33",
+			"chat.requestBorder": "#4A5667",
+			"chat.requestBubbleBackground": "#2B2D34",
+			"chat.requestBubbleHoverBackground": "#31353F",
+			"chat.requestCodeBorder": "#4A5667",
+			"chat.slashCommandBackground": "#0F8B8D",
+			"chat.slashCommandForeground": "#EEFFFF",
+			"chat.avatarBackground": "#0F8B8D",
+			"chat.avatarForeground": "#EEFFFF",
+			"chat.editedFileForeground": "#76E5FC",
+			"chat.linesAddedForeground": "#55D6BE",
+			"chat.linesRemovedForeground": "#FF715B",
+			"chat.checkpointSeparator": "#4A5667",
+			"chat.thinkingShimmer": "#55D6BE"
 	},
 	"semanticTokenColors": {
 		"class": "#F4D35E",
