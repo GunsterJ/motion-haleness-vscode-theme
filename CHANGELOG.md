@@ -6,6 +6,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## [1.1.1] - 2026-11-11
+
+### Changed
+- Screenshots now use rounded macOS-style window frames and a continuous theme-colored background with grain that flows seamlessly across images
+- Example code extended and polished: pure TypeScript, React (TSX), JSON and Markdown screenshots added, with accurate theme colors and indentation
+
 ## [1.1.0] - 2026-11-11
 
 ### Added
