@@ -4,7 +4,8 @@
 	"semanticHighlighting": true,
 	"colors": {
 		"focusBorder": "#A9B4C2",
-			"foreground": "#0F8B8D",
+			"foreground": "#EEFFFF",
+			"descriptionForeground": "#8493A4",
 			"widget.shadow": "#08090a",
 			"icon.foreground": "#eeffff",
 
