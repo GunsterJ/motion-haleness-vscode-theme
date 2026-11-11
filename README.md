@@ -37,6 +37,12 @@ Motion Haleness is tuned for the way you code today. It pairs beautifully with A
 
 <img src="assets/screenshots/demo-md.png" width="700" alt="Markdown">
 
+### Kilo Code conversation
+
+A real Kilo Code response, rendered with the Motion Haleness chat colors:
+
+<img src="assets/screenshots/agent-kilo.png" width="700" alt="Kilo Code conversation">
+
 ## Installation
 
 1. Install **Motion Haleness** from the Visual Studio Code Marketplace

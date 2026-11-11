@@ -21,4 +21,6 @@ for f in /tmp/mh-png/*.png; do
   cp "$f" "assets/screenshots/$(basename "$f" .svg.png).png"
 done
 
+NODE_PATH="$HIGHLIGHT_DIR/node_modules" node scripts/generate-agent-screenshot.js >/dev/null
+
 echo "Screenshots updated in assets/screenshots/"

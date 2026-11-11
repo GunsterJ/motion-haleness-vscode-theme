@@ -41,6 +41,7 @@
 		"test": "node scripts/validate-theme.js",
 		"contrast": "node scripts/check-contrast.js",
 		"screenshots": "bash scripts/make-screenshots.sh",
+		"screenshot:agent": "NODE_PATH=/tmp/mh-tools/node_modules node scripts/generate-agent-screenshot.js",
 		"package": "npx @vscode/vsce package"
 	},
 	"contributes": {
