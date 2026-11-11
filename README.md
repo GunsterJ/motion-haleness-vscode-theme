@@ -42,17 +42,17 @@ Requires Claude Code 2.1.118 or later:
 
 ## Fonts
 
-Motion Haleness ships the **Atkinson Hyperlegible** family (designed by the Braille Institute for maximum legibility), bundled in `assets/fonts/` under the SIL Open Font License 1.1:
+Motion Haleness ships **Inconsolata** for code and **Atkinson Hyperlegible** for prose, bundled in `assets/fonts/` under the SIL Open Font License 1.1:
 
-- **Atkinson Hyperlegible Mono** — monospace variable font (200–800), used for the editor and integrated terminal (default weight 400)
-- **Atkinson Hyperlegible** — proportional, used for the Markdown preview
+- **Inconsolata** — monospace variable font (200–900), used for the editor and integrated terminal (default weight 400)
+- **Atkinson Hyperlegible** — proportional, used for the Markdown preview (Atkinson Hyperlegible Mono is also bundled as an alternative monospace)
 
 To use them, install the fonts on your system:
 
 - **macOS:** run `./scripts/install-fonts.sh`, or copy the `.ttf` files from `assets/fonts/` to `~/Library/Fonts`
 - **Other platforms:** install the `.ttf` files from `assets/fonts/` with your platform's font manager
 
-Restart VS Code after installing. The defaults set `"Atkinson Hyperlegible Mono"` for `editor.fontFamily` and `terminal.integrated.fontFamily`, and `"Atkinson Hyperlegible"` for `markdown.preview.fontFamily` — you can always override these in your own settings.
+Restart VS Code after installing. The defaults set `"Inconsolata"` for `editor.fontFamily` and `terminal.integrated.fontFamily`, and `"Atkinson Hyperlegible"` for `markdown.preview.fontFamily` — you can always override these in your own settings.
 
 ## Screenshots
 
