@@ -191,6 +191,15 @@
 			}
 		},
 		{
+			"name": "Operator",
+			"scope": [
+				"keyword.operator"
+			],
+			"settings": {
+				"foreground": "#a0aec0"
+			}
+		},
+		{
 			"name": "Tag",
 			"scope": [
 				"entity.name.tag",
