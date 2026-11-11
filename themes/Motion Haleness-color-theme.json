@@ -101,6 +101,7 @@
 			"editorBracketMatch.background": "#76e6fc33",
 
 			"statusBar.background": "#0F8B8D",
+			"statusBar.foreground": "#eeffff",
 
 			"breadcrumb.foreground": "#a0aec0",
 			"breadcrumb.background": "#4A5667",

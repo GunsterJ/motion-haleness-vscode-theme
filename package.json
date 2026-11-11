@@ -3,6 +3,7 @@
 	"displayName": "Motion Haleness",
 	"description": "A modern, high-contrast dark color theme for Visual Studio Code with semantic highlighting and a readable diff experience.",
 	"publisher": "erole-attack",
+	"license": "MIT",
 	"version": "1.0.0",
 	"engines": {
 		"vscode": "^1.51.0"
@@ -31,6 +32,11 @@
 		"vscode theme",
 		"custom theme"
 	],
+	"scripts": {
+		"test": "node scripts/validate-theme.js",
+		"contrast": "node scripts/check-contrast.js",
+		"package": "npx @vscode/vsce package"
+	},
 	"contributes": {
 		"themes": [
 			{

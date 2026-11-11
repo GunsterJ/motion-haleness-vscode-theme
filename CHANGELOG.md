@@ -14,12 +14,22 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Bracket pair highlight colors
 - Editor widget, suggest and peek view colors
 - Semantic token colors for TypeScript and JavaScript highlighting
+- High-contrast chat colors (`chat.*`) for chat-based agents such as Codex, Kilo Code and Copilot Chat
+- Bundled fonts: **Inconsolata** (editor and terminal) and **Atkinson Hyperlegible** (Markdown preview), including configuration defaults and an install script
+- Coding agent themes:
+  - Codex CLI syntax theme (`.tmTheme`)
+  - Codex VS Code extension theme import (`codex-theme-v1` string)
+  - Claude Code custom theme
+  - macOS Terminal.app profile with the Motion Haleness ANSI palette
+- New marketplace description and search-friendly keywords
 
 ### Changed
-- Increased comment contrast so comments stay readable in diffs and Source Control
-- Differentiated operators from keywords (operators are now muted gray)
-- Made editor whitespace and indent guides visible
+- Comments now use a muted gray that stays readable in diffs and Source Control
+- Operators are differentiated from keywords (muted gray)
+- Editor whitespace and indent guides are now visible
 - Toned down the editor pane background
+- Bright workbench foreground so chat and agent response text renders white, with a muted description color for "thinking" states
+- Font weight tuned to 400 and font size to 15 for the bundled fonts
 
 ### Fixed
 - Markdown fenced code blocks and language hints are now visible
