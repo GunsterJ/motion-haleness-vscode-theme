@@ -6,7 +6,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
-## [0.4.0] - 2026-11-11
+## [1.0.0] - 2026-11-11
 
 ### Added
 - Diff editor and git gutter colors for added, modified and deleted lines

@@ -3,7 +3,7 @@
     "displayName": "Motion Haleness",
     "description": "A VS Code theme that's aesthetically pleasing, atleast for me .. 🎆",
     "publisher": "erole-attack",
-    "version": "0.4.0",
+    "version": "1.0.0",
     "engines": {
         "vscode": "^1.51.0"
     },
