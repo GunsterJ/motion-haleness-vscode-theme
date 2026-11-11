@@ -54,8 +54,8 @@
                 },
                 "editor.fontSize": {
                     "type": "number",
-                    "default": 14,
-                    "description": "Font size in the editor. Inconsolata renders smaller than most monospace fonts, so Motion Haleness defaults to 14."
+                    "default": 15,
+                    "description": "Font size in the editor. Inconsolata renders smaller than most monospace fonts, so Motion Haleness defaults to 15."
                 },
                 "editor.fontWeight": {
                     "type": "string",
@@ -76,8 +76,8 @@
                 },
                 "terminal.integrated.fontSize": {
                     "type": "number",
-                    "default": 14,
-                    "description": "Font size in the integrated terminal. Inconsolata renders smaller than most monospace fonts, so Motion Haleness defaults to 14."
+                    "default": 15,
+                    "description": "Font size in the integrated terminal. Inconsolata renders smaller than most monospace fonts, so Motion Haleness defaults to 15."
                 },
                 "markdown.preview.fontFamily": {
                     "type": "string",
