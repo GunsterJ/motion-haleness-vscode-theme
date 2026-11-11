@@ -31,7 +31,10 @@ Motion Haleness syntax highlighting for code blocks and diffs:
    theme = "motion-haleness"
    ```
 
-Codex renders its main UI with your terminal's palette, not the theme. For a colorful, high-contrast Codex UI, apply the Motion Haleness ANSI colors from the theme to your terminal profile (the same palette used by the VS Code terminal).
+Codex renders its main UI (chat text, borders, banners) with your terminal's ANSI palette, not the theme — the theme only colors code blocks and diffs. For a colorful, high-contrast Codex UI, run it in a terminal with the Motion Haleness palette:
+
+- **VS Code integrated terminal:** already uses the theme's palette (open a new terminal after switching the theme)
+- **macOS Terminal.app:** double-click `coding-agents/terminal/motion-haleness.terminal` to import the "Motion Haleness" profile, then set it as default via Terminal → Preferences → Profiles → Default
 
 ### Claude Code
 
