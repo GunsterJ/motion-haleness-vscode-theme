@@ -1,0 +1,26 @@
+/* CSS demo — component styling with CSS custom properties */
+:root {
+  --color-bg: #212329;
+  --color-accent: #55d6be;
+  --color-warn: #f4d35e;
+  --radius: 8px;
+}
+
+.hero {
+  display: grid;
+  place-items: center;
+  gap: 1rem;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, var(--color-bg), #0f8b8d22);
+}
+
+.hero__title {
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  color: var(--color-accent);
+}
+
+.hero__cta:hover {
+  background: var(--color-accent);
+  color: #212329;
+  border-radius: var(--radius);
+}

@@ -2,6 +2,8 @@
 
 A modern dark color theme for Visual Studio Code. Motion Haleness combines a balanced, high-contrast palette with full semantic highlighting support, and keeps your code readable even in diffs and Source Control.
 
+Language-agnostic by design: consistent, balanced highlighting for TypeScript, JavaScript, Python, Go, Rust, HTML, CSS, SQL and everything else your editor can parse.
+
 ## Features
 
 - High-contrast dark palette tuned for long coding sessions
@@ -67,11 +69,23 @@ Restart VS Code after installing. The defaults set `"Inconsolata"` for `editor.f
 
 ## Screenshots
 
-### Motion Haleness
-![Theme Example](theme-example.png)
+<img src="assets/screenshots/demo-ts.png" width="700" alt="TypeScript">
 
-### Motion Haleness Italic
-![Italic Theme Example](italic-theme-example.png)
+<img src="assets/screenshots/demo-py.png" width="700" alt="Python">
+
+<img src="assets/screenshots/demo-go.png" width="700" alt="Go">
+
+<img src="assets/screenshots/demo-rs.png" width="700" alt="Rust">
+
+<img src="assets/screenshots/demo-js.png" width="700" alt="JavaScript">
+
+<img src="assets/screenshots/demo-html.png" width="700" alt="HTML">
+
+<img src="assets/screenshots/demo-css.png" width="700" alt="CSS">
+
+<img src="assets/screenshots/demo-sql.png" width="700" alt="SQL">
+
+The example files live in [`assets/examples/`](assets/examples/); you can regenerate the screenshots with `npm run screenshots`.
 
 ## Installation
 

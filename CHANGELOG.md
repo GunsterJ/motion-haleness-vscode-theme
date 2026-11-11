@@ -22,6 +22,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
   - Claude Code custom theme
   - macOS Terminal.app profile with the Motion Haleness ANSI palette
 - New marketplace description and search-friendly keywords
+- Language-agnostic example screenshots in the README (TypeScript, JavaScript, Python, Go, Rust, HTML, CSS, SQL)
 
 ### Changed
 - Comments now use a muted gray that stays readable in diffs and Source Control
