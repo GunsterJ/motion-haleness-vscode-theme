@@ -13,7 +13,7 @@ NODE_PATH="$HIGHLIGHT_DIR/node_modules" node scripts/generate-screenshots.js /tm
 rm -rf /tmp/mh-png
 mkdir -p /tmp/mh-png
 for f in /tmp/mh-screenshots/*.svg; do
-  qlmanage -t -s 1440 -o /tmp/mh-png "$f" >/dev/null 2>&1
+  qlmanage -t -s 1100 -o /tmp/mh-png "$f" >/dev/null 2>&1
 done
 
 mkdir -p assets/screenshots
