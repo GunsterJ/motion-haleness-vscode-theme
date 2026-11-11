@@ -1,90 +1,114 @@
 {
-    "name": "motion-haleness",
-    "displayName": "Motion Haleness",
-    "description": "A modern, high-contrast dark color theme for Visual Studio Code with semantic highlighting and a readable diff experience.",
-    "publisher": "erole-attack",
-    "version": "1.0.0",
-    "engines": {
-        "vscode": "^1.51.0"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/erole-attack/motion-haleness-vscode-theme"
-    },
-    "galleryBanner": {
-        "color": "#9A275A",
-        "theme": "dark"
-    },
-    "icon": "images/icon_250x250.png",
-    "categories": [
-        "Themes"
-    ],
-    "keywords": [
-        "dark",
-        "dark theme",
-        "color theme",
-        "minimal",
-        "high contrast",
-        "semantic highlighting",
-        "syntax highlighting",
-        "italic",
-        "vscode theme",
-        "custom theme"
-    ],
-    "contributes": {
-        "themes": [
-            {
-                "label": "Motion Haleness",
-                "uiTheme": "vs-dark",
-                "path": "./themes/Motion Haleness-color-theme.json"
-            },
-            {
-                "label": "Motion Haleness Italic",
-                "uiTheme": "vs-dark",
-                "path": "./themes/Motion Haleness Italics Variation-color-theme.json"
-            }
-        ],
-        "configuration": {
-            "title": "Motion Haleness",
-            "properties": {
-                "editor.fontFamily": {
-                    "type": "string",
-                    "default": "Inconsolata, Menlo, Monaco, 'Courier New', monospace",
-                    "description": "Monospace font family used in the editor. Motion Haleness bundles Inconsolata; install it from the assets/fonts folder if it is not present on your system."
-                },
-                "editor.fontSize": {
-                    "type": "number",
-                    "default": 15,
-                    "description": "Font size in the editor. Inconsolata renders smaller than most monospace fonts, so Motion Haleness defaults to 15."
-                },
-                "editor.fontWeight": {
-                    "type": "string",
-                    "enum": ["normal", "bold", "100", "200", "300", "400", "500", "600", "700", "800", "900"],
-                    "default": "400",
-                    "description": "Font weight used in the editor. Inconsolata is a variable font (200-900); 400 keeps the code readable without being too thin."
-                },
-                "terminal.integrated.fontFamily": {
-                    "type": "string",
-                    "default": "Inconsolata, Menlo, Monaco, 'Courier New', monospace",
-                    "description": "Monospace font family used in the integrated terminal. Motion Haleness bundles Inconsolata; install it from the assets/fonts folder if it is not present on your system."
-                },
-                "terminal.integrated.fontWeight": {
-                    "type": "string",
-                    "enum": ["normal", "bold", "100", "200", "300", "400", "500", "600", "700", "800", "900"],
-                    "default": "400",
-                    "description": "Font weight used in the integrated terminal. Inconsolata is a variable font (200-900); 400 keeps terminal output readable without being too thin."
-                },
-                "terminal.integrated.fontSize": {
-                    "type": "number",
-                    "default": 15,
-                    "description": "Font size in the integrated terminal. Inconsolata renders smaller than most monospace fonts, so Motion Haleness defaults to 15."
-                },
-                "markdown.preview.fontFamily": {
-                    "type": "string",
-                    "default": "Atkinson Hyperlegible, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-                    "description": "Font family used in the Markdown preview. Motion Haleness bundles Atkinson Hyperlegible; install it from the assets/fonts folder if it is not present on your system."
-                }
-            }
-        }
-    }
+	"name": "motion-haleness",
+	"displayName": "Motion Haleness",
+	"description": "A modern, high-contrast dark color theme for Visual Studio Code with semantic highlighting and a readable diff experience.",
+	"publisher": "erole-attack",
+	"version": "1.0.0",
+	"engines": {
+		"vscode": "^1.51.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/erole-attack/motion-haleness-vscode-theme"
+	},
+	"galleryBanner": {
+		"color": "#9A275A",
+		"theme": "dark"
+	},
+	"icon": "images/icon_250x250.png",
+	"categories": [
+		"Themes"
+	],
+	"keywords": [
+		"dark",
+		"dark theme",
+		"color theme",
+		"minimal",
+		"high contrast",
+		"semantic highlighting",
+		"syntax highlighting",
+		"italic",
+		"vscode theme",
+		"custom theme"
+	],
+	"contributes": {
+		"themes": [
+			{
+				"label": "Motion Haleness",
+				"uiTheme": "vs-dark",
+				"path": "./themes/Motion Haleness-color-theme.json"
+			},
+			{
+				"label": "Motion Haleness Italic",
+				"uiTheme": "vs-dark",
+				"path": "./themes/Motion Haleness Italics Variation-color-theme.json"
+			}
+		],
+		"configuration": {
+			"title": "Motion Haleness",
+			"properties": {
+				"editor.fontFamily": {
+					"type": "string",
+					"default": "Inconsolata, Menlo, Monaco, 'Courier New', monospace",
+					"description": "Monospace font family used in the editor. Motion Haleness bundles Inconsolata; install it from the assets/fonts folder if it is not present on your system."
+				},
+				"editor.fontSize": {
+					"type": "number",
+					"default": 15,
+					"description": "Font size in the editor. Inconsolata renders smaller than most monospace fonts, so Motion Haleness defaults to 15."
+				},
+				"editor.fontWeight": {
+					"type": "string",
+					"enum": [
+						"normal",
+						"bold",
+						"100",
+						"200",
+						"300",
+						"400",
+						"500",
+						"600",
+						"700",
+						"800",
+						"900"
+					],
+					"default": "400",
+					"description": "Font weight used in the editor. Inconsolata is a variable font (200-900); 400 keeps the code readable without being too thin."
+				},
+				"terminal.integrated.fontFamily": {
+					"type": "string",
+					"default": "Inconsolata, Menlo, Monaco, 'Courier New', monospace",
+					"description": "Monospace font family used in the integrated terminal. Motion Haleness bundles Inconsolata; install it from the assets/fonts folder if it is not present on your system."
+				},
+				"terminal.integrated.fontWeight": {
+					"type": "string",
+					"enum": [
+						"normal",
+						"bold",
+						"100",
+						"200",
+						"300",
+						"400",
+						"500",
+						"600",
+						"700",
+						"800",
+						"900"
+					],
+					"default": "400",
+					"description": "Font weight used in the integrated terminal. Inconsolata is a variable font (200-900); 400 keeps terminal output readable without being too thin."
+				},
+				"terminal.integrated.fontSize": {
+					"type": "number",
+					"default": 15,
+					"description": "Font size in the integrated terminal. Inconsolata renders smaller than most monospace fonts, so Motion Haleness defaults to 15."
+				},
+				"markdown.preview.fontFamily": {
+					"type": "string",
+					"default": "Atkinson Hyperlegible, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+					"description": "Font family used in the Markdown preview. Motion Haleness bundles Atkinson Hyperlegible; install it from the assets/fonts folder if it is not present on your system."
+				}
+			}
+		}
+	}
 }
