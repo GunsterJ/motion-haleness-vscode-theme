@@ -1,0 +1,31 @@
+{
+  "name": "Motion Haleness",
+  "base": "dark",
+  "overrides": {
+    "claude": "#55D6BE",
+    "text": "#EEFFFF",
+    "inactive": "#8493A4",
+    "subtle": "#4A5667",
+    "suggestion": "#72A8D8",
+    "remember": "#CCF5AC",
+    "success": "#55D6BE",
+    "error": "#FF715B",
+    "warning": "#F4D35E",
+    "merged": "#9F5EF4",
+    "permission": "#F4D35E",
+    "promptBorder": "#55D6BE",
+    "planMode": "#9F5EF4",
+    "autoAccept": "#CCF5AC",
+    "bashBorder": "#FF715B",
+    "ide": "#72A8D8",
+    "fastMode": "#F4D35E",
+    "diffAdded": "#12352E",
+    "diffRemoved": "#3A1E22",
+    "diffAddedDimmed": "#0F2E27",
+    "diffRemovedDimmed": "#2E181C",
+    "diffAddedWord": "#55D6BE",
+    "diffRemovedWord": "#FF715B",
+    "userMessageBackground": "#2B2D34",
+    "selectionBg": "#9A275A"
+  }
+}
